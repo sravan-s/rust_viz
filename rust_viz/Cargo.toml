@@ -1,0 +1,7 @@
+[package]
+name = "rust_viz"
+version = "0.1.0"
+edition = "2021"
+
+[dependencies]
+dot_parser = { path = "../dot_parser" }
