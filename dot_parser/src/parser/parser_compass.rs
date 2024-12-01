@@ -2,7 +2,7 @@ use crate::tokenizer::Token;
 
 use super::parser::{ParseBufferItem, ParseResult, Parser};
 
-#[derive(Debug, Clone, PartialEq)]
+#[derive(Default, Debug, Clone, PartialEq)]
 pub enum Compass {
     N,
     Ne,
@@ -12,6 +12,7 @@ pub enum Compass {
     Sw,
     W,
     Nw,
+    #[default]
     C,
     Underscore,
 }
@@ -87,7 +88,9 @@ mod tests {
 
     #[test]
     fn test_parse_compass_fail() {
-        let input = vec![ParseBufferItem::Token(Token::Identifier("hello".to_string()))];
+        let input = vec![ParseBufferItem::Token(Token::Identifier(
+            "hello".to_string(),
+        ))];
         let result = Compass::N.parse(&input);
         assert_eq!(result, None);
     }

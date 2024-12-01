@@ -2,6 +2,7 @@ use crate::tokenizer::{Delimiter, Token};
 
 use super::parser::{ParseBufferItem, ParseResult, Parser};
 
+// ID '=' ID
 #[derive(Debug, Clone, PartialEq)]
 pub struct Attribute {
     pub lhs: String,
@@ -13,6 +14,16 @@ impl Attribute {
         Self { lhs, rhs }
     }
 }
+
+impl Default for Attribute {
+    fn default() -> Self {
+        Attribute {
+            lhs: "".to_string(),
+            rhs: "".to_string(),
+        }
+    }
+}
+
 
 impl Parser<Attribute> for Attribute {
     fn parse(&self, input: &[ParseBufferItem]) -> Option<ParseResult<Attribute>> {

@@ -11,6 +11,15 @@ pub struct Port {
     pub compass: Option<Compass>,
 }
 
+impl Default for Port {
+    fn default() -> Self {
+        Port {
+            id: None,
+            compass: None,
+        }
+    }
+}
+
 impl Parser<Port> for Port {
     fn parse(&self, input: &[ParseBufferItem]) -> Option<super::parser::ParseResult<Port>> {
         let first = input.first()?;
@@ -20,7 +29,7 @@ impl Parser<Port> for Port {
         }
 
         let second_as_vec = vec![second.clone()];
-        let second_as_compass = Compass::W.parse(&second_as_vec);
+        let second_as_compass = Compass::default().parse(&second_as_vec);
         let second_as_id = match second {
             ParseBufferItem::Token(Token::Identifier(ref val)) => Some(val),
             _ => None,
@@ -53,7 +62,7 @@ impl Parser<Port> for Port {
                     Some(ParseBufferItem::Token(Token::Identifier(_))),
                 ) => {
                     let fourth_as_vec = vec![fourth?.clone()];
-                    let fourth_as_compass = Compass::W.parse(&fourth_as_vec);
+                    let fourth_as_compass = Compass::default().parse(&fourth_as_vec);
                     if fourth_as_compass.is_some() {
                         let fourth_compass = fourth_as_compass?;
                         return Some(ParseResult {
