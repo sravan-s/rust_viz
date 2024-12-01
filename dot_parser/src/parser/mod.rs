@@ -5,6 +5,7 @@ mod grammer;
 mod parser;
 mod parser_a_list;
 mod parser_attr_list;
+mod parser_attribute_stmt;
 mod parser_attribute;
 mod parser_compass;
 mod parser_head;

@@ -169,7 +169,7 @@ mod tests {
         let result = AttrList::default().parse(&input);
 
         assert_eq!(result.is_some(), true);
-        assert_eq!(result.unwrap().result, expected);
-        assert_eq!(result.unwrap().remaining.len(), 1);
+        assert_eq!(result.clone().unwrap().result, expected);
+        assert_eq!(result.clone().unwrap().remaining.len(), 1);
     }
 }
